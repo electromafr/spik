@@ -1,4 +1,11 @@
-/* SASS declarations go here */
+/* SASS Variables
+$sm : 35.5em
+$md : 48em
+$lg : 64em
+$xl : 80em
+
+
+/* SASS mixins */
 =placeholder
   &::-webkit-input-placeholder
     @content
@@ -10,7 +17,7 @@
     @content
 
 
-
+/* SASS style */
 body
   height: 100%
   width: 100%
@@ -28,6 +35,21 @@ body
     color: #34495E
   .errorMessage
     color: red
+  .loader-container
+    position: absolute
+    left: 50%
+    top: 50%
+    .circle
+      width: 80px
+      height: 80px
+      border-radius: 40px
+      box-sizing: border-box
+      border: 10px solid rgba(255, 255, 255, 0.2)
+      border-top-color: #FFF
+      animation: spin 1s infinite linear
+      position: relative
+      left: -50%
+      top: -50%
   .triangle-bg
     position: absolute
     overflow: hidden
@@ -119,11 +141,54 @@ body
       overflow: scroll
       height: calc(100% - 10.5em)
       .message
-        max-width: 300px
-        .profile-pic img
-          max-width: 70px
-        .options-section
-          float: right
+        margin: 1em
+        .pic-message-wrapper
+          .profile-pic
+            width: 5em
+            height: 5em
+            overflow: hidden
+            display: inline-block
+            vertical-align: top
+            @media screen and (max-width: $sm)
+              width: 48px
+              height: 48px
+            img
+              min-height: 100%
+              min-width: 100%
+          .message-wrapper
+            display: inline-block
+            vertical-align: top
+            background-color: rgba(0, 0, 0, 0.1)
+            min-width: 200px
+            max-width: 60%
+            padding: 0 0 0 1em
+            min-height: 65px
+            position: relative
+            left: -4px
+            @media screen and (max-width: $sm)
+              min-height: 0
+            .text-section
+              display: inline-block
+              min-width: 150px
+              width: calc(100% - 4em)
+              vertical-align: top
+              text-align: left
+            .options-section
+              margin-right: 1em
+              float: right
+              vertical-align: top
+              position: relative
+              top: 1em
+              button
+                background-color: transparent
+                color: white
+                position: relative
+                top: -1em
+                right: -1em
+      .my-message
+        text-align: right
+        .pic-message-wrapper
+          margin-right: -4px
     .footer
       color: white
       background-color: rgba(0,0,0,0.3)
@@ -131,21 +196,6 @@ body
       bottom: 0
       height: 4em
       width: 100%
-      .step1
-        width: 200px
-        margin: auto
-        text-align: center
-        padding: 1em 0 1em 0
-      .step2
-        text-align: center
-      input
-        background-color: rgba(255,255,255,0.3)
-        border: none
-        color: black
-        padding: 0.5em
-        line-height: 3em
-        +placeholder
-          color: #AFAFAF
       button
         background: transparent
         border: none
@@ -153,8 +203,67 @@ body
         font-size: 1.5em
         font-weight: lighter
         position: relative
-        top: 0.1em
-      img
-        display: inline
-        height: 3em
-        width: 3em
+      .step1
+        height: 100%
+        width: 200px
+        margin: auto
+        text-align: center
+        padding: 1em 0 1em 0
+        button
+          top: 0
+      .step2
+        text-align: center
+        height: 100%
+        .profile-pic
+          display: inline
+          height: 4em
+          width: 4em
+          display: inline-block
+          vertical-align: top
+          overflow: hidden
+          img
+            min-height: 100%
+        .form-user
+          display: inline-block
+          height: 100%
+          button
+            top: 0.3em
+          input
+            background-color: rgba(255, 255, 255, 0.3)
+            border: none
+            color: black
+            padding: 0.5em
+            height: 69%
+            position: relative
+            top: 2px
+            margin-left: -2px
+            +placeholder
+              color: #AFAFAF
+      .step3
+        height: 100%
+        .form-message
+          display: inline-block
+          height: 100%
+          width: 100%
+          button
+            position: absolute
+            right: 0
+            top: 6px
+          input
+            background-color: rgba(255, 255, 255, 0.3)
+            border: none
+            color: black
+            padding: 0.5em
+            height: 69%
+            position: relative
+            top: 2px
+            margin-left: -2px
+            width: calc(100% - 115px)
+            +placeholder
+              color: #AFAFAF
+
+
+
+@keyframes spin
+  100%
+    transform: rotate(360deg)

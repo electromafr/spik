@@ -1,15 +1,24 @@
 <template name="message">
-  <div class="message">
-    <span class="user-name">{{user}}</span>
-    <div class="profile-pic">
-      <img src="{{findPic user}}" alt="Contact Person">
+  <div class="message {{myMessage}}">
+
+    <div class="name-wrapper">
+      <span class="user-name">{{user}}</span>
     </div>
-    <!--<span class="date-post">on {{formatDate createdAt}}</span>-->
-    <div class="card-panel z-depth-1">
-      <div class="options-section">
-        <button class="waves-effect waves-teal btn-flat right delete">&times;</button>
+
+    <div class="pic-message-wrapper">
+      <div class="profile-pic">
+        <img src="{{findPic user}}" alt="Contact Person" class="pure-img">
       </div>
-      <p class="text">{{text}}</p>
+      <!--<span class="date-post">on {{formatDate createdAt}}</span>-->
+
+      <div class="message-wrapper">
+        <div class="text-section">
+          <p class="text">{{text}}</p>
+        </div>
+        <div class="options-section">
+          <button class="pure-button">&times;</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

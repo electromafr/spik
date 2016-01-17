@@ -33,24 +33,22 @@
         {{else}}
           {{#if equals formStep 1}}
           <div class="step2">
-            {{userName}}
-            <input id="userField" type="text" name="userField" class="validate" maxlength="20" value="{{userName}}" placeholder="What's your name ?">
-            <button class="send">Send</button>
+            <div class="profile-pic">
+              <img src="{{findPic userName}}" alt="Contact Person" class="pure-img">
+            </div>
+            <form class="form-user">
+              <input id="userField" type="text" name="userField" class="validate" maxlength="20" value="{{userName}}" placeholder="What's your name ?">
+              <button class="send" type="submit" name="action">Send</button>
+            </form>
           </div>
           {{else}}
             {{#if equals formStep 2}}
-            <p>Step 2</p>
-            {{else}}
-              {{#if equals formStep 3}}
-              <form class="new-message pure-form">
-                <fieldset>
-                    <input id="userField" type="text" name="userField" class="validate" maxlength="20" placeholder="Your name">
-                    <input id="messageField" type="text" name="messagefield" class="validate" placeholder="Message">
+            <div class="step3">
+              <form class="form-message">
+                <input id="messageField" type="text" name="messagefield" class="validate" placeholder="Message">
                 <button class="pure-button" type="submit" name="action">Submit</button>
-              </fieldset>
               </form>
-              {{else}}
-              {{/if}}
+            </div>
             {{/if}}
           {{/if}}
         {{/if}}
@@ -61,7 +59,9 @@
 
     </div>
     {{else}}
-    <img src="/images/loading.gif" />
+    <div class="loader-container">
+      <div class="circle"></div>
+    </div>
     {{/if}}
 
     <div class="btn-change-bg-div">

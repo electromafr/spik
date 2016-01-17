@@ -31,7 +31,20 @@ Template.miniChat.events({
     Session.set("formStep", 1);
   },
 
-  "submit .new-message": function (event) {
+  "keyup #userField": function(event) {
+    Session.set("userName", event.target.value);
+  },
+
+  "submit .form-user": function(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    // If an userName is gave, access to step 2
+    if(Session.get("userName") != "")
+      Session.set("formStep", 2);
+  },
+
+  "submit .form-message": function (event) {
 
     // Prevent default browser form submit
     event.preventDefault();
@@ -40,7 +53,7 @@ Template.miniChat.events({
 
     // Get value from form elements
     var text = event.target.messagefield.value;
-    var user = event.target.userField.value;
+    var user = Session.get("userName");
 
     // Method calling to update message into the collection
     Meteor.call("addMessage", user, text, room._id);
