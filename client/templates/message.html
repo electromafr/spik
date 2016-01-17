@@ -1,0 +1,15 @@
+<template name="message">
+  <div class="message">
+    <span class="user-name">{{user}}</span>
+    <div class="profile-pic">
+      <img src="{{findPic user}}" alt="Contact Person">
+    </div>
+    <!--<span class="date-post">on {{formatDate createdAt}}</span>-->
+    <div class="card-panel z-depth-1">
+      <div class="options-section">
+        <button class="waves-effect waves-teal btn-flat right delete">&times;</button>
+      </div>
+      <p class="text">{{text}}</p>
+    </div>
+  </div>
+</template>

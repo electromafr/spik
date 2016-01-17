@@ -1,0 +1,71 @@
+<template name="miniChat">
+
+    {{#if Template.subscriptionsReady}}
+    <div class="chat-window">
+
+
+      <div class="header">
+        {{#if room.urlField}}
+        <h1>{{room.urlField}}</h1>
+        <h2 class="url-room">spik.meteor.com/<span class="url-room-urlfield">{{room.urlField}}</span></h2>
+        {{else}}
+        <h1>Unnamed room</h1>
+        <form class="new-room-url-field">
+          <input id="urlField" type="text" name="urlField" class="validate" placeholder="Give a name to this room">
+          {{#if errorMessage}}
+          <label for="urlfield" class="red-text animated fadeInLeft">{{errorMessage}}</label>
+          {{/if}}
+        </form>
+        {{/if}}
+      </div>
+
+      <div class="messages-list">
+        {{#each messages}}
+          {{> message}}
+        {{/each}}
+      </div>
+
+      <div class="footer">
+        {{#if equals formStep 0}}
+        <div class="step1">
+          <button class="begin">Begin</button>
+        </div>
+        {{else}}
+          {{#if equals formStep 1}}
+          <div class="step2">
+            {{userName}}
+            <input id="userField" type="text" name="userField" class="validate" maxlength="20" value="{{userName}}" placeholder="What's your name ?">
+            <button class="send">Send</button>
+          </div>
+          {{else}}
+            {{#if equals formStep 2}}
+            <p>Step 2</p>
+            {{else}}
+              {{#if equals formStep 3}}
+              <form class="new-message pure-form">
+                <fieldset>
+                    <input id="userField" type="text" name="userField" class="validate" maxlength="20" placeholder="Your name">
+                    <input id="messageField" type="text" name="messagefield" class="validate" placeholder="Message">
+                <button class="pure-button" type="submit" name="action">Submit</button>
+              </fieldset>
+              </form>
+              {{else}}
+              {{/if}}
+            {{/if}}
+          {{/if}}
+        {{/if}}
+
+
+
+      </div>
+
+    </div>
+    {{else}}
+    <img src="/images/loading.gif" />
+    {{/if}}
+
+    <div class="btn-change-bg-div">
+      <button class="btn-change-bg pure-button">Background</button>
+    </div>
+
+</template>

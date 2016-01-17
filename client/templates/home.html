@@ -1,0 +1,21 @@
+<template name="home">
+  <div class="splash-container">
+    <div class="splash-unit">
+      <div class="splash animated fadeInUp">
+        <h1>Spik</h1>
+        <h2>Easy anonymous chat system</h2>
+        <p>No account or credit card needed ! Choose a name for your room or leave it blank:</p>
+        <form class="urlForm pure-form">
+          <div class="url-block">
+            <label class="url-website">spik.meteor.com/</label>
+            <input id="urlField" type="text" name="urlfield" class="field-url-website" placeholder="optional" maxlength="20">
+            {{#if errorMessage}}
+            <label for="urlfield" class="animated fadeInLeft errorMessage">{{errorMessage}}</label>
+            {{/if}}
+          </div>
+          <button class="btn-create-room pure-button pure-button-primary" type="submit" name="action">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

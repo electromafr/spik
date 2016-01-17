@@ -1,0 +1,11 @@
+<template name="appBody">
+
+  <div class="triangle-bg"></div>
+  
+    {{> Template.dynamic template=area}}
+
+  <!-- session variables triggers helpers invisible here but we need to put them
+  in the template to make the helper reactive-->
+  <div hidden >{{ resized }}</div>
+
+</template>
