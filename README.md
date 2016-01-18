@@ -1,2 +1,2 @@
 # spik
-Try me at spik.meteor.com
+Try me at <a href="http://spik.meteor.com">spik.meteor.com</a>
