@@ -3,14 +3,27 @@ Session.set("userName", "");
 
 
 Template.miniChat.helpers({
+
   room: function () {
-    return getRoomFromUrlParam();
+    var room = getRoomFromUrlParam();
+
+    // IF a room has a seed bg in data, then show it
+    if(room && room.seedBg) {
+      Session.set("seedBg", room.seedBg);
+    }
+
+    if(room && room._id) {
+      Session.set("roomId", room._id);
+    }
+
+    return room
   },
+
   messages: function () {
     var messages = [];
-    var room = getRoomFromUrlParam();
-    if (room) {
-      messages = Messages.find({roomId : room._id}, {sort: {createdAt: 1}});
+    if (Session.get("roomId")) {
+      var roomId = Session.get("roomId");
+      messages = Messages.find({roomId : roomId}, {sort: {createdAt: 1}});
     }
     Session.set('messages', messages);
     return messages;
@@ -24,9 +37,13 @@ Template.miniChat.helpers({
   userName: function(){
     return Session.get("userName");
   }
+
 });
 
+
+
 Template.miniChat.events({
+
   "click .footer .begin": function (event) {
     Session.set("formStep", 1);
   },
@@ -41,7 +58,7 @@ Template.miniChat.events({
 
     // If an userName is gave, access to step 2
     if(Session.get("userName") != "")
-      Session.set("formStep", 2);
+    Session.set("formStep", 2);
   },
 
   "submit .form-message": function (event) {
@@ -74,20 +91,33 @@ Template.miniChat.events({
     // Method calling to update room into the collection
     Meteor.call("addUrlField", room._id, urlField, function(error, result){
       if (error)
-       if(error.error)
-         Session.set("errorMessage", error.reason);
-       else {
-         Session.set("errorMessage", "Unknown Error.")
-       }
-      });
-
+      if(error.error)
+      Session.set("errorMessage", error.reason);
+      else {
+        Session.set("errorMessage", "Unknown Error.")
+      }
+    });
   },
+
   "click .btn-change-bg": function(){
+    var room = getRoomFromUrlParam();
+
     var seedBg = generateSeed();
-    Session.set("seedBg", seedBg);
-    setUpTriangleBg();
+
+    // Method calling to update message into the collection
+    Meteor.call("addSeedBg", room._id, seedBg, function(error, result){
+      if (error)
+        if(error.error)
+        Session.set("errorMessage", error.reason);
+        else {
+          Session.set("errorMessage", "Unknown Error.")
+        }
+    });
   }
+
 });
+
+
 
 Template.miniChat.onCreated(function (){
   var self = this;
@@ -117,5 +147,8 @@ Template.miniChat.onRendered(function (){
 
     // Scroll to bottom
     scrollToBottom();
+
+
+
   });
 });

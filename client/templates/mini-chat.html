@@ -1,9 +1,6 @@
 <template name="miniChat">
-
     {{#if Template.subscriptionsReady}}
     <div class="chat-window">
-
-
       <div class="header">
         {{#if room.urlField}}
         <h1>{{room.urlField}}</h1>
@@ -18,13 +15,11 @@
         </form>
         {{/if}}
       </div>
-
       <div class="messages-list">
         {{#each messages}}
           {{> message}}
         {{/each}}
       </div>
-
       <div class="footer">
         {{#if equals formStep 0}}
         <div class="step1">
@@ -52,20 +47,14 @@
             {{/if}}
           {{/if}}
         {{/if}}
-
-
-
       </div>
-
     </div>
     {{else}}
     <div class="loader-container">
       <div class="circle"></div>
     </div>
     {{/if}}
-
     <div class="btn-change-bg-div">
       <button class="btn-change-bg pure-button">Background</button>
     </div>
-
 </template>

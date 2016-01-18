@@ -12,7 +12,7 @@ Template.home.events({
 
     // Get value from form elements
     var urlField = event.target.urlField.value;
-
+    
     // Insert a task into the collection et open the room
     Meteor.call("addRoom", urlField, function(error, result){
 
@@ -20,7 +20,7 @@ Template.home.events({
 
       if (error) {
         if(error.error = "roomNameAlreadyExists")
-          Session.set("errorMessage", error.reason);
+        Session.set("errorMessage", error.reason);
         else {
           Session.set("errorMessage", "Unknown Error.")
         }

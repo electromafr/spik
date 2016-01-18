@@ -16,7 +16,9 @@
           <p class="text">{{text}}</p>
         </div>
         <div class="options-section">
-          <button class="pure-button">&times;</button>
+          {{#if equals myMessage "my-message"}}
+          <button class="pure-button delete">&times;</button>
+          {{/if}}
         </div>
       </div>
     </div>
